@@ -16,7 +16,7 @@ class RegisterController extends Controller
     public function store(Request $request) {
         $fields = $request->validate([
             'name' => 'required|max:20',
-            'contactNumber' => 'required',
+            'contactNumber' => 'required:unique:users,contactNumber',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'campus' => 'required|string',

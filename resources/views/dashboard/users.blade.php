@@ -32,8 +32,8 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200 font-poppins">
+                         @foreach ($users as $user)
                             <tr class="text-gray-900">
-                                @foreach ($users as $user)
                                     <td class="px-5 py-2 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="text-sm font-medium ">
@@ -59,8 +59,8 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                     </td>
-                                @endforeach
                             </tr>
+                                @endforeach
                         </tbody>
                     </table>
                 </div>

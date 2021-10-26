@@ -14,7 +14,7 @@ class UsersController extends Controller
     }
 
     public function index() {
-        $users = User::paginate(1)->except(auth()->user()->id);
+        $users = User::paginate(10);
   
         return view('dashboard.users', ['users' => $users]);
     }

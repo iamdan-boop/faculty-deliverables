@@ -22,29 +22,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// login
-Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::post('/', [LoginController::class, 'login']);
+Route::group(['middleware' => ['guest']], function () {
 
-// register
-Route::post('/register', [RegisterController::class, 'store']);
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
+    // login
+    Route::get('/', [LoginController::class, 'index'])->name('login');
+    Route::post('/', [LoginController::class, 'login']);
+
+    // register
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.user');
+    Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
 
-// forgot 
-Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('password.request');
-Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');
+    // forgot 
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('password.request');
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');
 
-// reset-password
-Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'reset'])->name('password.reset');
-Route::put('/reset-password', [ForgotPasswordController::class, 'update'])->name('password.update');
+    // reset-password
+    Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'reset'])->name('password.reset');
+    Route::put('/reset-password', [ForgotPasswordController::class, 'update'])->name('password.update');
+});
 
 
 // dashboard
 Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     // Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
-    
+    Route::post('/logout', [DashboardController::class, 'destroy'])->name('logout');
+
 
     Route::get('/', [DashboardCardsController::class, 'index'])->name('dashboard');
     Route::get('/users', [UsersController::class, 'index'])->name('users');

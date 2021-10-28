@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\RegisterUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
@@ -13,26 +13,16 @@ class RegisterController extends Controller
         return view('authentication.signup');
     }
 
-    public function store(Request $request) {
-        $fields = $request->validate([
-            'name' => 'required|max:20',
-            'contactNumber' => 'required|unique:users,contactNumber',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
-            'campus' => 'required|string',
-            'position' => 'required|string'
+    public function store(RegisterUserRequest $request) {
+        User::create([
+            'name' => $request->name,
+            'contactNumber' => $request->contactNumber,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'campus' => $request->campus,
+            'position' => $request->position,
         ]);
-
-        $user = User::create([
-            'name' => $fields['name'],
-            'contactNumber' => $fields['contactNumber'],
-            'email' => $fields['email'],
-            'password' => Hash::make($fields['password']),
-            'campus' => $fields['campus'],
-            'position' => $fields['position'],
-        ]);
-        auth()->attempt($user->only('email', 'password'));
-
+        abort_if(!auth()->attempt($request->only('email', 'password')), 403);
         return redirect()->route('dashboard');
     }
 }

@@ -3,7 +3,7 @@
 @section('content')
     <div class="min-h-screen w-full flex items-center justify-center bg-signup-bg-1 bg-no-repeat bg-cover">
         <div class="bg-gray-50 rounded-md shadow-md w-2/4 py-5 px-7 bg-opacity-50">
-            <form action="{{ route('register') }}" method="POST">
+            <form action="{{ route('register.user') }}" method="POST">
                 @csrf
                 <div class="font-poppins text-center text-gray-900">Faculty Deliverables</div>
                 <div class="grid-2-row">

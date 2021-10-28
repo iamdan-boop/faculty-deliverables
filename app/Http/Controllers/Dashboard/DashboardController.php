@@ -10,13 +10,15 @@ class DashboardController extends Controller
 
 
 
-    public function index() {
+    public function index()
+    {
         $users = User::all();
         return view('dashboard.dashboard', ['$users' => $users]);
     }
 
 
-    public function logout() {
+    public function destroy()
+    {
         auth()->logout();
         return redirect()->route('login');
     }

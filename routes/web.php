@@ -6,7 +6,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Dashboard\DashboardCardsController;
 use App\Http\Controllers\Dashboard\LogsController;
-use App\Http\Controllers\Dashboard\SendItemController;
+use App\Http\Controllers\Dashboard\SettingsController;
 use App\Http\Controllers\Dashboard\UsersController;
 use App\Http\Livewire\SendItems;
 use Illuminate\Support\Facades\Route;
@@ -23,20 +23,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['guest']], function () {
-
     // login
     Route::get('/', [LoginController::class, 'index'])->name('login');
     Route::post('/', [LoginController::class, 'login']);
-
     // register
     Route::post('/register', [RegisterController::class, 'store'])->name('register.user');
     Route::get('/register', [RegisterController::class, 'index'])->name('register');
-
-
     // forgot 
     Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('password.request');
     Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');
-
     // reset-password
     Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'reset'])->name('password.reset');
     Route::put('/reset-password', [ForgotPasswordController::class, 'update'])->name('password.update');
@@ -45,16 +40,18 @@ Route::group(['middleware' => ['guest']], function () {
 
 // dashboard
 Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
-    // Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::post('/logout', [DashboardController::class, 'destroy'])->name('logout');
-
-
     Route::get('/', [DashboardCardsController::class, 'index'])->name('dashboard');
+    Route::get('/senditems', [SendItems::class, 'render'])->name('senditem');
+    Route::get('/logs', [LogsController::class, 'index'])->name('logs');
     Route::get('/users', [UsersController::class, 'index'])->name('users');
 
-    Route::get('/senditems', [SendItems::class, 'render'])->name('senditem');
-    Route::post('/senditems', [SendItemController::class, 'addItem'])->name('senditem.addItems');
+    Route::group(['prefix' => 'settings'], function () {
+        Route::get('/', [SettingsController::class, 'index'])->name('settings');
+        Route::put('/updateInfo', [SettingsController::class, 'updateInfo'])->name('settings.personal');
+        Route::put('/updatePassword', [SettingsController::class, 'updatePassword'])->name('settings.password');
+    });
 
 
-    Route::get('/logs', [LogsController::class, 'index'])->name('logs');
+    Route::post('/logout', [DashboardController::class, 'destroy'])->name('logout');
 });
+ 

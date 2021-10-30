@@ -1,4 +1,4 @@
-@extends('dashboard.dashboard')
+@extends('layouts.dashboard')
 
 @section('dashboard-content')
 <div class="flex items-center">

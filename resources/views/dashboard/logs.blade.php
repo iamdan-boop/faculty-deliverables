@@ -1,4 +1,4 @@
-@extends('dashboard.dashboard')
+@extends('layouts.dashboard')
 
 @section('dashboard-content')
 <div class="flex flex-col mx-auto py-3 sm:px-6 lg:px-8">

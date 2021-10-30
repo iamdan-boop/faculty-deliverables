@@ -9,7 +9,6 @@ class DashboardController extends Controller
 {
 
 
-
     public function index()
     {
         $users = User::all();

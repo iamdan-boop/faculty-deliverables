@@ -15,7 +15,7 @@
 
                 <ul class="flex items-center font-poppins text-white space-x-5">
                     <li><a href="">{{ auth()->user()->name }}</a></li>
-                    <li><a href="">Settings</a></li>
+                    <li><a href="{{ route('settings') }}">Settings</a></li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST" class="mr-3">
                             @csrf

@@ -11,6 +11,6 @@ class DashboardCardsController extends Controller
     public function index()
     {
         $users = User::count();
-        return view('dashboard.dashboard_cards', ['users' => $users]);
+        return view('dashboard.dashboard_cards', compact('users'));
     }
 }

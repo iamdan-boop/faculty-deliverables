@@ -9,11 +9,13 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('authentication.signup');
     }
 
-    public function store(RegisterUserRequest $request) {
+    public function store(RegisterUserRequest $request)
+    {
         User::create([
             'name' => $request->name,
             'contactNumber' => $request->contactNumber,
@@ -23,6 +25,6 @@ class RegisterController extends Controller
             'position' => $request->position,
         ]);
         abort_if(!auth()->attempt($request->only('email', 'password')), 403);
-        return redirect()->route('dashboard');
+        return redirect()->route('user.dashboard');
     }
 }

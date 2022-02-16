@@ -13,7 +13,7 @@
 }
 
 .label-style .input-style {
-    @apply w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none font-poppins;
+    @apply w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border font-poppins focus:outline-none;
 }
 
 .cardContainer {
@@ -42,4 +42,20 @@
 
 .dashboardSelection {
     @apply hover:bg-gray-300 hover:bg-opacity-70 p-2 rounded;
+}
+
+.filepond--item {
+    width: calc(70% - 0.5em);
+}
+
+@media (min-width: 30em) {
+    .filepond--item {
+        width: calc(50% - 0.5em);
+    }
+}
+
+@media (min-width: 50em) {
+    .filepond--item {
+        width: calc(33.33% - 0.5em);
+    }
 }

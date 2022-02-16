@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <button type="submit"
-                    class="mt-7 w-full font-poppins bg-blue-500 rounded-md p-3 text-white hover:bg-blue-400">Signup</button>
+                    class="mt-7 w-full font-poppins bg-gray-900 rounded-md p-3 text-white hover:bg-gray-800">Signup</button>
                 <hr class="my-6 border-gray-400 w-full">
 
                 <div class="font-poppins mt-2">

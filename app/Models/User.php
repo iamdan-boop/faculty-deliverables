@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
@@ -24,8 +23,10 @@ class User extends Authenticatable implements CanResetPassword
         'password',
         'campus',
         'position',
-        'contactNumber'
+        'contactNumber',
+        'is_admin'
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -45,4 +46,10 @@ class User extends Authenticatable implements CanResetPassword
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function packages()
+    {
+        return $this->hasMany(Package::class);
+    }
 }

@@ -13,7 +13,12 @@
                 </div>
                 <div class="bg-gray-50 shadow-sm rounded-md p-5">
                     <div class="text-md font-poppins">Personal Information</div>
-                    <form action="{{ route('settings.personal') }}" method="POST">
+                    <form @if (auth()->user()->is_admin)
+                        action="{{ route('admin.settings.personal') }}"
+                    @else
+                        action="{{ route('user.settings.personal') }}"
+                        @endif
+                        method="POST">
                         @csrf
                         @method('PUT')
                         <div class="grid-2-row">
@@ -94,7 +99,14 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 shadow-sm rounded-md pb-5 pt-3 px-5">
-                    <form action="{{ route('settings.password') }}" method="POST">
+                    <form @if (auth()->user()->is_admin)
+
+                        action="{{ route('admin.settings.password') }}"
+                    @else
+                        action="{{ route('user.settings.password') }}"
+                        @endif
+
+                        method="POST">
                         @csrf
                         @method('PUT')
                         <div class="w-2/3">

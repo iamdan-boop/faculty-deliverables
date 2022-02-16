@@ -33,7 +33,7 @@
                         </div>
 
                         <button
-                            class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-4 py-3 mt-6">
+                            class="w-full block bg-gray-900 hover:bg-gray-800 focus:bg-gray-800 text-white font-semibold rounded-lg px-4 py-3 mt-6">
                             Log In
                         </button>
 

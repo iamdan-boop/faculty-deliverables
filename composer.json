@@ -6,14 +6,19 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "algolia/algoliasearch-client-php": "^3.1",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
+        "laravel/scout": "^9.3",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "livewire/livewire": "^2.7",
-        "realrashid/sweet-alert": "^4.0"
+        "plank/laravel-mediable": "^5.2",
+        "realrashid/sweet-alert": "^4.0",
+        "spatie/laravel-medialibrary": "^7.20",
+        "twilio/sdk": "^6.31"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

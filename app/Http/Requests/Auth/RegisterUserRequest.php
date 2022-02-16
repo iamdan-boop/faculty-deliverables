@@ -25,7 +25,7 @@ class RegisterUserRequest extends FormRequest
     {
         return [
             'name' => 'required|max:20',
-            'contactNumber' => 'required|regex:/(09)[0-9]{9}/|unique:users,contactNumber',
+            'contactNumber' => 'required|regex:/(09)[0-9]{9}/',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'campus' => 'required|string',
